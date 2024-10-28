@@ -7,11 +7,13 @@ def handle_conversation(user_text):
     user_text = user_text.lower()
     if "hello" in user_text or "halo" in user_text or "hai" in user_text or "hi" in user_text or "Hello" in user_text or "Halo" in user_text or "Hai" in user_text or "Hi" in user_text:
         return "Haiii!! Ada yang bisa aku bantu?"
-    elif "aku pusing banget" in user_text or "gangerti mtk" in user_text or "bantu pliss" in user_text:
+    elif "apa kabar midi" in user_text or "hows your day midii" in user_text or "how's your day midi" in user_text or "Apa kabar midi" in user_text or "Hows your day midi" in user_text or "How's your day midi" in user_text: 
+        return "Kabar aku baik semoga kamu juga baik yaa"
+    elif "aku pusing banget" in user_text or "gangerti mtk" in user_text or "bantu pliss" in user_text or "nggak ngerti mtk" in user_text or "gak ngerti matematika" in user_text or "Aku pusing bangett" in user_text:
         return "Butuh bantuan apaaa aku bisa kokk semoga."
     elif "Kamu siapa?" in user_text or "kamu siapa" in user_text or "kamu siapa?" in user_text:
         return "Aku math bot yang bisa membantu kamu dalam perhitungan dasar. Mungkin kamu mengira kan ada kalkulator, buat apasi Math Bot ini? Jadi kehadiran kami membuat kamu merasakan sesuatu yang lebih interaktif."
-    elif "byee" in user_text or "thank youu" in user_text or "Terimakasih" in user_text or "thanks" in user_text:
+    elif "byee" in user_text or "thank youu" in user_text or "Terimakasih" in user_text or "thanks" in user_text or "makasih ya midi" in user_text:
         return "Byee sama- sama!!"
     else:
         return "Sorry aku cuman bisa menyelesaikan soal matematika.."
@@ -49,7 +51,7 @@ jokes_list = [
 
 def chatbot_response(input_text):
     # Jika input adalah permintaan jokes, maka pilih random dari jokes_list
-    if "joke" in input_text.lower() or "jokes" in input_text.lower():
+    if "joke" in input_text.lower() or "jokes" in input_text.lower() or "kata-kata hari ini" in input_text.lower() or "hibur aku dong" in input_text.lower() or "Hibur aku dong" in input_text.lower() or "Ngelawak dulu" in input_text.lower() or "Jokes pls" in input_text.lower():
         return random.choice(jokes_list)
     else:
         return "I'm sorry, I don't understand. Try asking for a joke or math help."
