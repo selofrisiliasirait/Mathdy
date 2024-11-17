@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathdy</title>
+    <!-- Tambahkan link Google Fonts untuk Poppins Semibold -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end; /* Menempatkan konten di bagian bawah */
+            height: 100vh;
+            background-image: url('{{ url_for("static", filename="background1.svg") }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .start-button {
+            font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+            font-weight: 600; /* Mengatur bobot font ke semibold */
+            margin-bottom: 35px; /* Memberikan sedikit jarak dari bawah */
+            padding: 10px 20px;
+            border: none;
+            background-color: #093f81;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button Section -->
+    <button class="start-button" onclick="startChatting()">Chat Mathdy</button>
+
+    <script>
+        function startChatting() {
+            window.location.href = '/chat';
+        }
+    </script>
+</body>
+</html>
