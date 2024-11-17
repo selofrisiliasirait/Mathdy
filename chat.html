@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- Impor font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* Menggunakan font Poppins secara global */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 600;
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-image: url('{{ url_for("static", filename="background2.svg") }}');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        h2 {
+            font-size: 25px;
+            margin: 0 0 10px 0;
+            text-align: left;
+            border-bottom: 3px solid rgb(0, 0, 0);
+            display: inline-block;
+
+        } 
+        
+        h3 {
+            margin-top: 0;
+            margin-bottom: 0; 
+            font-size: 14.5px; 
+        }
+
+        h5 {
+            margin-top: 0; 
+            font-size: 11px; 
+        }
+
+        p {
+            font-size: 12px;
+            margin: 0;
+            margin-top: 0;
+        }
+       
+        .main-container {
+            display: flex;
+            gap: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+            width: 1000px; /* Set a fixed width */
+            height: 415px; /* Set a fixed height */
+            overflow: scroll; /* To prevent overflow */
+        }
+
+        .text-container {
+            width: 300px;
+            padding: 5px;
+        }
+
+        .chat-container {
+            width: 600px;
+            overflow-y: scroll;
+            padding: 20px;
+        }
+        
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 0px;
+        }
+        
+        .chat-box .message { margin-bottom: 15px; }
+        .chat-box .user { text-align: right; color: #093f81; }
+        .chat-box .bot { text-align: left; color: #000000; }
+
+        .input-container { margin-top: 15px; }
+        .input-container input { 
+            width: 503px; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 0px; 
+            font-family: 'Poppins', sans-serif;
+            font-weight: 200; /* Regular font */
+        }
+        .input-container button {
+            padding: 10px;
+            border: none;
+            background-color: #093f81;
+            color: white;
+            border-radius: 0px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 200; /* Regular font */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="text-container">
+            <h2>Panduan</h2>
+            <h5>Silahkan ketik kalimat yang ada di panduan ini untuk menjalankan Mathdy</h5>
+            <h3>1. Membuka dan Mengakhiri Percakapan</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-> Gunakan kata: hi, halo, hello, dan hai jika kamu ingin mengawali percakapan atau menyapa Mathdy<br>&nbsp;&nbsp;&nbsp;&nbsp;-> Gunakan kata: terima kasih, thank you, dan thanks jika kamu ingin mengakhiri percakapan dan mengucapkan terima kasih pada Mathdy<br></p>
+            <h3><br>2. Menjalankan Operasi Hitung</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-> Silahkan ketik angka beserta operasi hitung yang bisa digunakan: tambah (+), kurang (-), bagi (/), kali (*), modulus (%), akar (sqrt(angka)), pangkat (** untuk pangkat 2, *** untuk pangkat 3, dst); misal: 2+3-4/5*6%7**sqrt(8)<br></p>
+            <h3><br>3. Menampilkan Jokes</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-> Silahkan ketik "jokes" atau "joke"<br></p>
+            <h3><br>4. Meminta Tips atau Rekomendasi Belajar Matematika Dasar</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-> <br></p>
+        </div>
+        
+        <div class="chat-container"> 
+            <div class="chat-box" id="chatbox">
+                <h3 class="botText"><span>Halo Mathdies!</span></h3>
+            </div>
+            <div class="input-container">
+                <input type="text" id="textInput" placeholder="Type your message here">
+                <button onclick="getUserResponse()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getUserResponse() {
+            var userText = $('#textInput').val();
+            var userHTML = "<h3 class='user'><span>" + userText + "</span></h3>";
+            $('#chatbox').append(userHTML);
+            $('#textInput').val("");
+            $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+
+            $.get("/get", { userMessage: userText }).done(function(data) {
+                var botHTML = "<h3 class='bot'><span>" + data + "</span></h3>";
+                $('#chatbox').append(botHTML);
+                $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+            });
+        }
+
+        $('#textInput').keypress(function(e) {
+            if (e.which == 13) {
+                getUserResponse();
+            }
+        });
+    </script>
+</body>
+</html>
