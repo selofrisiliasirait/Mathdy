@@ -13,8 +13,10 @@ def handle_conversation(user_text):
         return "Hai, aku Mathdy! Ada yang bisa aku bantu?"
     elif "terima kasih" in user_text or "thank you" in user_text or "thanks" in user_text:
         return "Sama-sama, senang bisa membantu!"
+    elif "tips belajar" in user_text or "tips and trick belajar mtk" in user_text:
+        return "1. Banyak latihan soal \n2. Belajar dari website \n3. Belajar dari dasar \n4. Jangan takut bertanya kan ada mathdy >_<!!"
     else:
-        return "Maaf, aku hanya bisa membantu dengan soal matematika dan bercanda!"
+        return "Maaf, aku hanya bisa membantu dengan soal matematika, tips dan bercanda!"
 
 
 # Fungsi untuk memeriksa apakah input adalah ekspresi matematika
