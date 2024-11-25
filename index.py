@@ -43,6 +43,19 @@ def handle_conversation(user_text):
     else:
         return "Maaf, aku hanya bisa membantu dengan soal matematika dan bercanda!"
 
+def solve_factorial_expression(user_text):
+    try:
+        # Check if the input ends with "!"
+        if user_text.endswith("!"):
+            # Extract the number before "!"
+            number = int(user_text[:-1])  # Remove the "!" and convert to integer
+            if number < 0:
+                return "Error: Factorial of a negative number is undefined."
+            result = math.factorial(number)
+            return f"{number}! = {result}"
+        return None  # Return None if it's not a factorial
+    except ValueError:
+        return "Error: Invalid input for factorial."
 
 # Fungsi untuk memeriksa apakah input adalah ekspresi matematika
 def is_math_expression(user_text):
